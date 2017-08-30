@@ -1,3 +1,32 @@
 .navbar {
-	border: 1px solid red;
+	list-style-type: none;
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	font-family: 'Futura';
 }
+
+.navbar li {
+	display: inline;
+	font-weight: bold;
+	color: gray;
+}
+
+.navbar li:hover {
+	color: black;
+	transition: color 750ms linear 0s;
+}
+
+.navbar_image {
+	max-width: auto;
+	max-height: 56px;
+}
+
+.navbar_container {
+	display: grid;
+	grid-template-columns: 20% 80%;
+}
+
+
+
+

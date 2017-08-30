@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import NavBarContainer from './Containers/NavBarContainer/NavBarContainer'
+import InfoCardContainer from './Containers/InfoCardContainer/InfoCardContainer';
+import NavBarContainer from './Containers/NavBarContainer/NavBarContainer';
 import logo from './logo.svg';
 import './App.css';
 
@@ -8,6 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBarContainer></NavBarContainer>
+        <InfoCardContainer></InfoCardContainer>
       </div>
     );
   }
