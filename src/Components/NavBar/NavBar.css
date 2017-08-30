@@ -15,9 +15,11 @@
 .navbar li:hover {
 	color: black;
 	transition: color 750ms linear 0s;
+	cursor: pointer;
 }
 
 .navbar_image {
+	cursor: pointer;
 	max-width: auto;
 	max-height: 56px;
 }
