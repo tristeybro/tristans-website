@@ -1,15 +1,18 @@
 import React from 'react';
 import styles from './NavBar.css';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const NavBar = (props) => {
 	return (
 		<div className={styles.navbar_container}>
-			<img className={styles.navbar_image} src={props.image_src}></img>
+			<Link exact to='/'>
+				<img className={styles.navbar_image} src={props.image_src}></img>
+			</Link>
 			<ul className={styles.navbar}>
-				<li>BIO</li>
-				<li>POSTS</li>
-				<li>CONNECT</li>
+				<li><Link to='/bios'>BIO</Link></li>
+				<li><Link to='/posts'>POSTS</Link></li>
+				<li><Link to='/connect'>CONNECT</Link></li>
 			</ul>
 		</div>
 	)
