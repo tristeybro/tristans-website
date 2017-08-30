@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import InfoCardContainer from './Containers/InfoCardContainer/InfoCardContainer';
-import NavBarContainer from './Containers/NavBarContainer/NavBarContainer';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route} from 'react-router-dom';
+import HomeContainer from './Containers/HomeContainer/HomeContainer';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NavBarContainer></NavBarContainer>
-        <InfoCardContainer></InfoCardContainer>
-      </div>
+      <BrowserRouter>
+        <Route exact path='/' component={HomeContainer}></Route>
+      </BrowserRouter>
     );
   }
 }
