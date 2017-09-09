@@ -32,6 +32,8 @@
 .media_link:hover {
 	width: 96px;
 	height: 96px;
+	margin-top: -4px; /* (96 - 80 - 4 - 4) / 2 */
+	transition: margin-top 200ms linear 0s;
 	transition: width 200ms linear 0s;
 }
 
