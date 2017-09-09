@@ -1,0 +1,58 @@
+.heading {
+	font-weight: bold;
+	text-align: center;
+	display: block;
+}
+
+.text_section {
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.media_links_container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 25px 0px 25px 0px;
+}
+
+.media_link {
+	width: 80px;
+	height: 80px;
+	margin: 4px;
+}
+
+.media_link img {
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 10%;
+}
+
+.contact_me_form {
+	margin: 25px 0px 25px 0px;
+}
+
+.donate_section {
+	text-align: center;
+}
+
+.donate_list {
+	list-style: none;
+	font-size: 0.5em;
+	display: inline-block;
+	padding: 0px;
+	text-align: initial;
+}
+
+.donate_list li {
+	margin-top: 2px;
+}
+
+
+
+
+
+

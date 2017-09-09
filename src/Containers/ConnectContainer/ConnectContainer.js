@@ -1,9 +1,10 @@
 import React from 'react';
+import Connect from '../../Components/Connect/Connect';
 
 class ConnectContainer extends React.Component {
 	render() {
 		return (
-			<div>Connect</div>
+			<Connect></Connect>
 		)
 	}
 };

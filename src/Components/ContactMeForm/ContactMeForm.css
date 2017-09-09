@@ -1,0 +1,34 @@
+.contact_me_form {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 500px;
+	max-height: 500px;
+}
+
+.contact_me_form input {
+	width: 100%;
+	margin: 0px 0px 10px 0px;
+}
+
+.contact_me_form textarea {
+	width: 100%;
+	height: 5em;
+}
+
+.contact_me_form label {
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.contact_me_form button {
+	background-color: #2E9AFE;
+	border: none;
+	border-radius: 10%;
+	cursor: pointer;
+	color: white;
+	padding: 5px 15px 5px 15px;
+}
+
+.contact_me_form button:hover {
+	background-color: #2E64FE;
+}
