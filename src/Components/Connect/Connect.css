@@ -19,10 +19,20 @@
 	margin: 25px 0px 25px 0px;
 }
 
+.media_links_container:hover {
+	height: 96px;
+}
+
 .media_link {
 	width: 80px;
 	height: 80px;
 	margin: 4px;
+}
+
+.media_link:hover {
+	width: 96px;
+	height: 96px;
+	transition: width 200ms linear 0s;
 }
 
 .media_link img {
