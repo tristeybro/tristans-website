@@ -4,30 +4,13 @@ import ContactMeForm from '../../Components/ContactMeForm/ContactMeForm';
 import styles from './Connect.css';
 import _ from 'lodash';
 
-const contactMeText = `
-	Feel free to reach out and message me through one of the channels below.
-	I usually respond as long as you're not a weirdo.
-	I believe in making thoughtful connections so I probably won't add you on
-	anything if we haven't met before or had some meaningful form of conversation (online or otherwise).
-`;
-
-const iconHrefs = [
-	'https://s3.amazonaws.com/thetristanity/img/twitter_square.png',
-	'https://s3.amazonaws.com/thetristanity/img/facebook_square.png',
-	'https://s3.amazonaws.com/thetristanity/img/linkedin_square.png',
-	'https://s3.amazonaws.com/thetristanity/img/instagram_square.png',
-	'https://s3.amazonaws.com/thetristanity/img/thought_catalog_icon.jpg',
-];
-
-const iconLinks = [
-	'//twitter.com/OhTheTristanity',
-	'//facebook.com/ohthetristanity',
-	'//linkedin.com/in/tristan-benavides-4a270a25',
-	'//instagram.com/a_tristan_benavides',
-	'//thoughtcatalog.com/tristan-benavides/',
-];
-
 const Connect = (props) => {
+
+	const cryptoLinks = props.cryptoLinks;
+	const iconHrefs = props.iconHrefs;
+	const iconLinks = props.iconLinks;
+	const contactMeText = props.contactMeText;
+
 	return (
 		<div>
 			<NavBarContainer></NavBarContainer>
@@ -58,11 +41,9 @@ const Connect = (props) => {
 
 			<b1 className={styles.heading}>Donate</b1>
 			<div className={styles.donate_section}>
-			<ul className={styles.donate_list}>
-				<li>BTC: 1MEpQmh62ukJNwKM4SCStysHwrCu157DeT</li>
-				<li>ETH: 0xB952335ac6aC23AD53739AB6E2FCd93494040ba2</li>
-				<li>LTC: LbxJb3q13Lt4XamhhMmvf4pGeXY97xGKf8</li>
-			</ul>
+				<ul className={styles.donate_list}>
+					{ cryptoLinks.map((cl, i) => (<li onClick={props.onClick.bind(this, cl)} key={i}>{cl.name}: <button>{cl.address}</button></li>)) }
+				</ul>
 			</div>
 
 		</div>
