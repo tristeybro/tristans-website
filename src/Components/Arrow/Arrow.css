@@ -1,0 +1,28 @@
+button {
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  outline:0;
+}
+
+svg {
+  padding: 5px;
+}
+
+.arrow {
+  cursor: pointer;
+  position: relative;
+  top: 50%;
+  margin-top: -45px;
+  margin-left: -35px;
+  width: 70px;
+  height: 90px;
+}
+
+.arrow {
+  display: inline;
+}
+
+.arrow:hover polyline {
+  stroke-width: 6;
+}
