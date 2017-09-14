@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
 import PostsRolodex from '../../Components/PostsRolodex/PostsRolodex';
+import styles from './PostsContainer.css';
 
 const fakePosts = [
 	{
@@ -68,7 +69,7 @@ const fakePosts = [
 class PostsContainer extends React.Component {
 	render() {
 		return (
-			<div>
+			<div className={styles.posts_body}>
 				<NavBarContainer></NavBarContainer>
 				<PostsRolodex posts={fakePosts}></PostsRolodex>
 			</div>

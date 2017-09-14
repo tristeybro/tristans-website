@@ -30,24 +30,27 @@ class PostsRolodex extends React.Component {
 
 		return (
 			<div className={styles.container}>
-
-				<div className={styles.arrow} onClick={this.goLeft}>
-					<img src="https://s3.amazonaws.com/thetristanity/img/left_arrow.png"></img>
-				</div>
 				
 				<div className={styles.rolodex_outer}>
 					<div className={styles.rolodex_inner}>
+
+						<div className={styles.arrow} onClick={this.goLeft}>
+							<img src="https://s3.amazonaws.com/thetristanity/img/left_arrow.png"></img>
+						</div>
+
 						{
 							this.props.posts.map((post, index) => {
 								return (<PostCard horizontalIndex={horizontalIndex} post={post}></PostCard>)
 							})
 						}
+
+						<div className={styles.arrow} onClick={this.goRight}>
+							<img src="https://s3.amazonaws.com/thetristanity/img/right_arrow.png"></img>
+						</div>
+						
 					</div>
 				</div>
-				
-				<div className={styles.arrow} onClick={this.goRight}>
-					<img src="https://s3.amazonaws.com/thetristanity/img/right_arrow.png"></img>
-				</div>
+			
 			</div>
 		)
 	}
