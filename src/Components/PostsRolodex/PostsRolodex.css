@@ -1,0 +1,23 @@
+.container {
+	display: flex;
+	align-items: center;	
+	justify-content: center;
+}
+
+.rolodex_outer {
+	border: 1px solid gray;
+	perspective: 400px;
+	width: 400px;
+}
+
+.rolodex_inner {
+	white-space: nowrap;
+}
+
+.arrow {
+	cursor: pointer;
+	width: 100%;
+	z-index: 100;
+	background-color: white;
+}
+
