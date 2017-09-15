@@ -12,9 +12,14 @@ class PostCard extends React.Component {
 		return (
 			<div ref={(e) => { if (e != null) {e.style.left = left}}}
 					 className={styles.postcard}>
-				<p className={styles.title}>{post.title}</p>
-				<img className={styles.img}src={post.img}></img>
-				<p className={styles.date}>{post.date}</p>
+
+				<div className={styles.text_section}>
+					<div className={styles.title}>{post.title}</div>
+					<div className={styles.date}>{ new Date(post.date).toLocaleDateString("en-US") }</div>
+				</div>
+
+				<img className={styles.img} src={post.img}></img>
+
 			</div>
 		)
 	}

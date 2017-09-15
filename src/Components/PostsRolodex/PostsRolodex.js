@@ -1,6 +1,7 @@
 import React from 'react';
 import PostCard from '../../Components/PostCard/PostCard';
 import styles from './PostsRolodex.css';
+import { fetchPosts } from '../../Api/api.js';
 
 class PostsRolodex extends React.Component {
 
@@ -21,6 +22,10 @@ class PostsRolodex extends React.Component {
 		if (horizontalIndex != 0) {
 			this.setState({horizontalIndex: horizontalIndex + 1});
 		}
+	}
+
+	componentDidMount() {
+		fetchPosts().then(val => console.log(val));
 	}
 
 	render() {
@@ -47,7 +52,7 @@ class PostsRolodex extends React.Component {
 						<div className={styles.arrow} onClick={this.goRight}>
 							<img src="https://s3.amazonaws.com/thetristanity/img/right_arrow.png"></img>
 						</div>
-						
+
 					</div>
 				</div>
 			

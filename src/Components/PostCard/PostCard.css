@@ -1,44 +1,82 @@
 .postcard {
-
+	border: 1px solid black;
 	height: 128px;
 	width: 128px;
-	overflow: hidden;
-	border: 1px solid black;
-	display: inline-block;
-	position: relative;
-
-	background-color: red;
-	margin: 12px;
 
 	transform-origin: left;
-	transform: rotateY(45deg);
+	transform: rotateY(60deg);
 
-	opacity: 1;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-	backface-visibility: hidden;
-	transition: left 300ms linear;
+	background-color: white;
+
+	z-index: -1;
 }
 
 .postcard:hover {
-	transform: scale(1.5);
-	z-index: 102;
+	transform: scale(2.5);
+	z-index: 2000;
+	position: relative;
+	background-color: white;
 	opacity: 1;
 }
 
-.img {
+.postcard:hover .title, .date {
+	display: block;
+	margin: 4px;
+} 
+
+.postcard:hover .text_section {
+	display: block;
 	width: 100%;
-	height: 100%;
+} 
+
+.postcard:hover .date {
+	display: block;
 }
 
 .title {
 	display: none;
+	text-align: center;
+	font-size: 10px;
+	white-space: initial;
 }
 
 .date {
 	display: none;
+	text-align: center;
+	font-size: 6px;
+	color: grey;
 }
 
-.postcard:hover .title, .postcard:hover .date {
-	display: block;
+.img {
+	min-width: 0px;
+	min-height: 0px;
+
+	max-height: 100%;
+	max-width: 100%;
+
+	height: auto;
+	width: auto;
+
+	flex: 1 1 auto;
+
+	margin: 4px;
 }
+
+.text_section {
+	text-align: center;
+	flex: 0 1 content;
+}
+
+
+
+
+
+
+
+
 
