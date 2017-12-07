@@ -4,6 +4,7 @@ import HomeContainer from './Containers/HomeContainer/HomeContainer';
 import BiosContainer from './Containers/BiosContainer/BiosContainer';
 import PostsContainer from './Containers/PostsContainer/PostsContainer';
 import ConnectContainer from './Containers/ConnectContainer/ConnectContainer';
+import BlogPostContainer from './Containers/BlogPostContainer/BlogPostContainer';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <Route exact path='/bios' component={BiosContainer}></Route>
           <Route exact path='/posts' component={PostsContainer}></Route>
           <Route exact path='/connect' component={ConnectContainer}></Route>
+          <Route exact path='/posts/:id/:url_title' component={BlogPostContainer}></Route>
         </Switch>
       </BrowserRouter>
     );

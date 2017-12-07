@@ -1,42 +1,99 @@
-.navbar {
-	list-style-type: none;
-	display: flex;
-	justify-content: space-around;
-	align-items: flex-start;
-	font-family: 'Futura';
+@media screen and (min-width: 500px) {
+	.navbar_container {
+		max-width: 800px;
+		width: 80%;
+		display: flex;
+		border-bottom: 1px solid grey;
+	}
+
+	.logo_container {
+		flex-grow: 4;
+	}
+
+	.navbar_link {
+		flex-grow: 1;
+		align-self: center;
+		font-weight: bold;
+		font-family: 'Futura';
+	}
+
+	.navbar_link a {
+		text-decoration: none;
+		color: gray;
+	}
+
+	.navbar_link a:hover {
+		color: black;
+		transition: color 750ms linear 0s;
+		cursor: pointer;
+	}
+
+	.navbar_image {
+		cursor: pointer;
+		max-width: auto;
+		max-height: 56px;
+	}
+
+	.hamburger_menu_container {
+		display: none;
+	}
 }
 
-.navbar li {
-	display: inline;
-	font-weight: bold;
+@media screen and (max-width: 500px) {
+	.navbar_container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		border-bottom: 1px solid grey;
+	}
+
+	.logo_container {
+		flex-grow: 2;
+	}
+
+	.navbar_link {
+		flex-grow: 1;
+		font-weight: bold;
+		font-family: 'Futura';
+		align-self: center;
+		border: 1px solid grey;
+		width: 100%;
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
+
+	.navbar_link a {
+		text-decoration: none;
+		color: gray;
+	}
+
+	.navbar_link a:hover {
+		color: black;
+		transition: color 750ms linear 0s;
+		cursor: pointer;
+	}
+
+	.navbar_image {
+		cursor: pointer;
+		max-width: auto;
+		max-height: 56px;
+	}
+
+	.hamburger_menu_container {
+		position: absolute;
+		display: inline-block;
+		right: 0;
+	}
+
+	.hamburger_menu_container img {
+		cursor: pointer;
+		max-width: auto;
+		max-height: 56px;
+		right: 0;
+	}
 }
 
-.navbar li a {
-	text-decoration: none;
-	color: gray;
-}
 
-.navbar li a:hover {
-	color: black;
-	transition: color 750ms linear 0s;
-	cursor: pointer;
-}
-
-.navbar_image {
-	cursor: pointer;
-	max-width: auto;
-	max-height: 56px;
-}
-
-.navbar_container {
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 25px;
-	max-width: 80%;
-	display: grid;
-	grid-template-columns: 20% 80%;
-	border-bottom: 1px solid gray;
-}
 
 
 

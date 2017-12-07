@@ -3,3 +3,12 @@
 	height: 100vh;
 	overflow: hidden;
 }
+
+.navbar_container {
+	display: flex;
+	justify-content: center;
+}
+
+.rolodex_container {
+	margin-top: 128px;
+}

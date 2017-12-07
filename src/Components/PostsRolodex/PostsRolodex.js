@@ -13,8 +13,11 @@ class PostsRolodex extends React.Component {
 	}
 
 	goRight = () => {
+		const canGoRight = this.lastCard.postcard.offsetLeft >= 0;
 		const horizontalIndex = this.state.horizontalIndex;
-		this.setState({horizontalIndex: horizontalIndex - 1});
+		if (canGoRight) {
+			this.setState({horizontalIndex: horizontalIndex - 1});
+		}
 	}
 
 	goLeft = () => {
@@ -32,6 +35,7 @@ class PostsRolodex extends React.Component {
 
 		const horizontalIndex = this.state.horizontalIndex;
 		const isModalShown = this.state.isModalShown
+		const numProps = this.props.posts.length
 
 		return (
 			<div className={styles.container}>
@@ -45,7 +49,8 @@ class PostsRolodex extends React.Component {
 
 						{
 							this.props.posts.map((post, index) => {
-								return (<PostCard horizontalIndex={horizontalIndex} post={post}></PostCard>)
+								return index == numProps - 1 ? (<PostCard key={index} ref={(e) => {if (e != null) {this.lastCard = e}}} horizontalIndex={horizontalIndex} post={post}></PostCard>)
+								: (<PostCard key={index} horizontalIndex={horizontalIndex} post={post}></PostCard>)
 							})
 						}
 

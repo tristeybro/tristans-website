@@ -29,9 +29,13 @@ class PostsContainer extends React.Component {
 		const isFetchingPosts = this.state.isFetchingPosts;
 		return (
 			<div className={styles.posts_body}>
-				<NavBarContainer></NavBarContainer>
-				{ isFetchingPosts ? <div>Fetching posts...</div>
-													: <PostsRolodex posts={this.state.posts}></PostsRolodex> }
+				<div className={styles.navbar_container}>
+					<NavBarContainer></NavBarContainer>
+				</div>
+				<div className={styles.rolodex_container}>
+					{ isFetchingPosts ? <div>Fetching posts...</div>
+														: <PostsRolodex posts={this.state.posts}></PostsRolodex> }
+				</div>
 			</div>
 		)
 	}

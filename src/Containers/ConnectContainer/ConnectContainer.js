@@ -1,6 +1,9 @@
 import React from 'react';
 import Connect from '../../Components/Connect/Connect';
+import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
+import Notification from '../../Components/Notification/Notification';
 import CryptoModal from '../../Components/CryptoModal/CryptoModal';
+import styles from '../../Lib/SharedStyles.css';
 
 const contactMeText = `
 	Feel free to reach out and message me through one of the channels below.
@@ -49,6 +52,7 @@ class ConnectContainer extends React.Component {
 		super(props);
 		this.state = {
 			activeCryptoLink: null,
+			isClipboardCopyNotificationShown: false,
 		};
 	}
 
@@ -60,10 +64,19 @@ class ConnectContainer extends React.Component {
 		this.setState({activeCryptoLink: null})
 	}
 
+	showClipboardCopyNotification = () => {
+		this.setState({isClipboardCopyNotificationShown: true});
+		setTimeout(() => this.setState({isClipboardCopyNotificationShown: false}), 1000);
+	}
+
 	render() {
 		const activeCryptoLink = this.state.activeCryptoLink;
+		const isClipboardCopyNotificationShown = this.state.isClipboardCopyNotificationShown;
 		return (
 			<div>
+				<div className={styles.navbar_container}>
+					<NavBarContainer></NavBarContainer>
+				</div>
 				<Connect iconHrefs={iconHrefs}
 								 iconLinks={iconLinks}
 								 cryptoLinks={cryptoLinks}
@@ -71,8 +84,10 @@ class ConnectContainer extends React.Component {
 								 onClick={this.onClickHandler}>
 				</Connect>
 				{ activeCryptoLink ? <CryptoModal exitHandler={this.exitHandler}
-																					info={activeCryptoLink}></CryptoModal>
+																					info={activeCryptoLink}
+																					showClipboardCopyNotification={this.showClipboardCopyNotification}></CryptoModal>
 													 : null }
+				{ isClipboardCopyNotificationShown ? <Notification message={"Address Copied To Clipboard"}></Notification> : null }
 			</div>
 		)
 	}

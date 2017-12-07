@@ -10,6 +10,7 @@ const CryptoModal = (props) => {
 		window.getSelection().addRange(range);
 		document.execCommand("copy");
 		window.getSelection().removeAllRanges();
+		props.showClipboardCopyNotification();
 	};
 
 	const info = props.info;

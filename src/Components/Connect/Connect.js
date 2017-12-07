@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
 import ContactMeForm from '../../Components/ContactMeForm/ContactMeForm';
 import styles from './Connect.css';
 import _ from 'lodash';
@@ -13,8 +12,6 @@ const Connect = (props) => {
 
 	return (
 		<div>
-			<NavBarContainer></NavBarContainer>
-
 			<b1 className={styles.heading}>Contact Me</b1>
 			<p className={styles.text_section}>{contactMeText}</p>
 

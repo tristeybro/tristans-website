@@ -1,9 +1,16 @@
 import React from 'react';
+import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
+import styles from '../../Lib/SharedStyles.css';
 
 class BiosContainer extends React.Component {
 	render() {
 		return (
-			<div>Bios</div>
+			<div>
+				<div className={styles.navbar_container}>
+					<NavBarContainer></NavBarContainer>
+				</div>
+				<div>Bios</div>
+			</div>
 		)
 	}
 };
