@@ -4,6 +4,9 @@ import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
 import styles from '../../Lib/SharedStyles.css';
 
 class HomeContainer extends React.Component {
+
+	componentDidMount = () => { document.title = "Home" }
+
 	render() {
 		return (
 			<div>

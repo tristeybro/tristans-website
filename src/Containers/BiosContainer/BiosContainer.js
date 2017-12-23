@@ -3,6 +3,9 @@ import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
 import styles from '../../Lib/SharedStyles.css';
 
 class BiosContainer extends React.Component {
+
+	componentDidMount = () => { document.title = "Bio" }
+
 	render() {
 		return (
 			<div>

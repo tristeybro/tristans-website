@@ -69,6 +69,8 @@ class ConnectContainer extends React.Component {
 		setTimeout(() => this.setState({isClipboardCopyNotificationShown: false}), 1000);
 	}
 
+	componentDidMount = () => { document.title = "Connect" }
+
 	render() {
 		const activeCryptoLink = this.state.activeCryptoLink;
 		const isClipboardCopyNotificationShown = this.state.isClipboardCopyNotificationShown;

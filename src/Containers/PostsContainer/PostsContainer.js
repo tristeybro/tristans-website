@@ -15,6 +15,7 @@ class PostsContainer extends React.Component {
 	}
 
 	componentDidMount() {
+		document.title = "Posts";
 		if (this.state.isFetchingPosts) {
 			fetchPosts().then(val => {
 				this.setState({
