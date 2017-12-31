@@ -1,0 +1,65 @@
+.timeline {
+	display: block;
+	width: 600px;
+	height: 600px;
+	overflow: scroll;
+	position: relative;
+}
+
+.timeline_container {
+	display: flex;
+	justify-content: center;
+}
+
+.chart {
+	border: 1px solid grey;	
+	background-color: #416E85;
+}
+
+.timeline_event_dot:hover {
+	fill: yellow;
+	cursor: pointer;
+}
+
+.tooltip {
+	position: absolute;
+	background-color: white;
+	border-radius: 10px;
+	width: calc(600px - 100px - 40px - 32px);
+	padding: 16px;
+	text-align: center;
+}
+
+.tooltip img {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+.tooltip::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: -20px;
+  border-style: solid;
+  border-width: 12px 20px 12px 0;
+  border-color: transparent white transparent transparent;
+}
+
+.zoom_controller {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	z-index: 1;
+	margin: 8px;
+}
+
+.zoom_controller img {
+	max-width: 50px;
+	max-height: 50px;
+	cursor: pointer;
+}
