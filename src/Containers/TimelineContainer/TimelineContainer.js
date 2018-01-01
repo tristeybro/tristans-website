@@ -157,7 +157,7 @@ class TimelineContainer extends React.Component {
 		return (
 			<div className={styles.timeline_container}>
 				<div onScroll={this.handleScroll} className={styles.timeline}>
-					<svg ref={this.onRef} className={styles.chart} width="600" height={height + 2 * this.state.timelineMargin}>
+					<svg ref={this.onRef} className={styles.chart} width="100%" height={height + 2 * this.state.timelineMargin}>
 						<line x1="100" y1="0" x2="100" y2={height + 2 * this.state.timelineMargin} stroke="white" stroke-width="10"></line>
 					</svg>
 					<div ref={this.captureZoomController} className={styles.zoom_controller}>

@@ -4,6 +4,7 @@
 	height: 600px;
 	overflow: scroll;
 	position: relative;
+	margin: 8px;
 }
 
 .timeline_container {
