@@ -30,9 +30,9 @@ class NavBar extends React.Component {
 					</div>
 				</div>
 
-				<div className={navbarLinkClasses}><Link to='/bios'>BIO</Link></div>
-				<div className={navbarLinkClasses}><Link to='/posts'>POSTS</Link></div>
-				<div className={navbarLinkClasses}><Link to='/connect'>CONNECT</Link></div>
+				<Link className={navbarLinkClasses} to='/bios'>BIO</Link>
+				<Link className={navbarLinkClasses} to='/posts'>POSTS</Link>
+				<Link className={navbarLinkClasses} to='/connect'>CONNECT</Link>
 
 			</div>
 		)

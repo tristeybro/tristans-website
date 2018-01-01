@@ -15,14 +15,11 @@
 		align-self: center;
 		font-weight: bold;
 		font-family: 'Futura';
-	}
-
-	.navbar_link a {
 		text-decoration: none;
 		color: gray;
 	}
 
-	.navbar_link a:hover {
+	.navbar_link:hover {
 		color: black;
 		transition: color 750ms linear 0s;
 		cursor: pointer;
@@ -65,14 +62,11 @@
 		width: 100%;
 		padding-top: 12px;
 		padding-bottom: 12px;
-	}
-
-	.navbar_link a {
 		text-decoration: none;
 		color: gray;
 	}
 
-	.navbar_link a:hover {
+	.navbar_link:hover {
 		color: black;
 		transition: color 750ms linear 0s;
 		cursor: pointer;
@@ -97,9 +91,3 @@
 		right: 0;
 	}
 }
-
-
-
-
-
-
