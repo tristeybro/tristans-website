@@ -3,7 +3,8 @@ import Connect from '../../Components/Connect/Connect';
 import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
 import Notification from '../../Components/Notification/Notification';
 import CryptoModal from '../../Components/CryptoModal/CryptoModal';
-import styles from '../../Lib/SharedStyles.css';
+import sharedStyles from '../../Lib/SharedStyles.css';
+import styles from './ConnectContainer.css';
 
 const contactMeText = `
 	Feel free to reach out and message me through one of the channels below.
@@ -76,7 +77,7 @@ class ConnectContainer extends React.Component {
 		const isClipboardCopyNotificationShown = this.state.isClipboardCopyNotificationShown;
 		return (
 			<div>
-				<div className={styles.navbar_container}>
+				<div className={sharedStyles.navbar_container}>
 					<NavBarContainer></NavBarContainer>
 				</div>
 				<Connect iconHrefs={iconHrefs}
@@ -89,7 +90,7 @@ class ConnectContainer extends React.Component {
 																					info={activeCryptoLink}
 																					showClipboardCopyNotification={this.showClipboardCopyNotification}></CryptoModal>
 													 : null }
-				{ isClipboardCopyNotificationShown ? <Notification message={"Address Copied To Clipboard"}></Notification> : null }
+				{ isClipboardCopyNotificationShown ? <div className={styles.notification}><Notification message={"Address Copied To Clipboard"}></Notification></div> : null }
 			</div>
 		)
 	}
