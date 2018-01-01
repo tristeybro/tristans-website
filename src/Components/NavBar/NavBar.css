@@ -34,6 +34,10 @@
 	.hamburger_menu_container {
 		display: none;
 	}
+
+	.active_navbar_link {
+		color: black;
+	}
 }
 
 @media screen and (max-width: 500px) {
@@ -72,6 +76,10 @@
 		cursor: pointer;
 	}
 
+	.navbar_link:active {
+		background-color: #F2F2F2;
+	}
+
 	.navbar_image {
 		cursor: pointer;
 		max-width: auto;
@@ -90,4 +98,8 @@
 		max-height: 56px;
 		right: 0;
 	}
+}
+
+.active_navbar_link {
+	color: black;
 }

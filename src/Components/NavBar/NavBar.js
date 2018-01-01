@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './NavBar.css';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom'
 
 class NavBar extends React.Component {
 
@@ -10,6 +10,11 @@ class NavBar extends React.Component {
 		this.state = {
 			isNavbarShown: false,
 		};
+	}
+
+	handleLinkClick = (e) => {
+		const target = e.target;
+		target.style.backgroundColor = "red";
 	}
 
 	toggleNavLinks = () => {
@@ -22,17 +27,17 @@ class NavBar extends React.Component {
 			<div className={styles.navbar_container}>
 
 				<div className={styles.logo_container}>
-					<Link exact to='/'>
+					<NavLink exact to='/'>
 						<img className={styles.navbar_image} src={this.props.image_src}></img>
-					</Link>
+					</NavLink>
 					<div className={styles.hamburger_menu_container}>
 						<img src="https://s3.amazonaws.com/thetristanity/img/hamburger_menu_icon.png" onClick={this.toggleNavLinks}></img>
 					</div>
 				</div>
 
-				<Link className={navbarLinkClasses} to='/bios'>BIO</Link>
-				<Link className={navbarLinkClasses} to='/posts'>POSTS</Link>
-				<Link className={navbarLinkClasses} to='/connect'>CONNECT</Link>
+				<NavLink to='/bios' className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>BIO</NavLink>
+				<NavLink to='/posts' className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>POSTS</NavLink>
+				<NavLink to='/connect' className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>CONNECT</NavLink>
 
 			</div>
 		)
