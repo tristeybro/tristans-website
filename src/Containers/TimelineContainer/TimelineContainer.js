@@ -10,6 +10,7 @@ class TimelineContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			timelineDiv: null,
 			zoomController: null,
 			svg: null,
 			minIntervalHeight: 100,
@@ -39,7 +40,11 @@ class TimelineContainer extends React.Component {
 		this.setState({zoomController: ref});
 	}
 
-	onRef = (ref) => {
+	captureTimelineDiv = (ref) => {
+		this.setState({timelineDiv: d3.select(ref)});
+	}
+
+	captureSvg = (ref) => {
 		this.setState({svg: d3.select(ref)}, () => this.renderTimeline());
 	}
 
@@ -55,22 +60,26 @@ class TimelineContainer extends React.Component {
 												.domain([startDate.getTime(), endDate.getTime()])
 											  .range([timelineMargin, this.state.height + timelineMargin]);
 
-		const tooltip = d3.select("body")
-											.append("div")	
-    									.attr("class", styles.tooltip)				
-    									.style("opacity", 0)
-    									.style("display", "none")
-    									.style("position", "absolute");
+
+		const timelineDiv = this.state.timelineDiv;
+		const svg = this.state.svg;
+
+		const tooltip = timelineDiv.append("div")	
+				    									 .attr("class", styles.tooltip)				
+				    									 .style("opacity", 0)
+				    									 .style("display", "none")
+				    									 .style("position", "absolute");
 
     const zoomController = d3.select(this.state.zoomController);
 
 		const timePoints = this.getTimePoints(startDate, endDate, this.state.numIntervals);
 
-		const points = this.state.svg.append("g").selectAll("g")
-								.data(timePoints)
-								.enter()
-								.append("g")
-								.attr("transform", (d) => `translate(0,${timeScale(d.getTime())})`);
+		const points = svg.append("g")
+											.selectAll("g")
+											.data(timePoints)
+											.enter()
+											.append("g")
+											.attr("transform", (d) => `translate(0,${timeScale(d.getTime())})`);
 
 		points.append("circle")
 					.attr("cx", "15%")
@@ -96,14 +105,17 @@ class TimelineContainer extends React.Component {
 							.attr("stroke", "orange")
 							.attr("stroke-width", "4")
 							.attr("fill", "white")
-							.on("mouseenter", (d) => {	
+							.on("mouseenter", (d) => {
+								console.log(svg);
+								console.log(svg._groups[0][0])
+								const coordinates = d3.mouse(svg._groups[0][0]);
 		          	tooltip.transition()		
 		               		 .duration(100)		
 		                   .style("opacity", .9)
 		                   .style("display", "inline-block");	
 		            tooltip.html(`<h4>${d.date}</h4>` + `<img src="${d.img}"></img>` + "<br><br>" + d.description)
-		            	     .style("left", (d3.event.pageX + 20) + "px")		
-                	     .style("top", (d3.event.pageY - 28) + "px");
+		            	     .style("left", (coordinates[0] + 20) + "px")		
+                	     .style("top", (coordinates[1] - 28) + "px");
                 zoomController.style("opacity", "0");
 		          })					
 			        .on("mouseout", (d) => {		
@@ -158,8 +170,8 @@ class TimelineContainer extends React.Component {
 		const height = this.state.height;
 		return (
 			<div className={styles.timeline_container}>
-				<div onScroll={this.handleScroll} className={styles.timeline}>
-					<svg ref={this.onRef} className={styles.chart} width="100%" height={height + 2 * this.state.timelineMargin}>
+				<div ref={this.captureTimelineDiv} onScroll={this.handleScroll} className={styles.timeline}>
+					<svg ref={this.captureSvg} className={styles.chart} width="100%" height={height + 2 * this.state.timelineMargin}>
 						<line x1="15%" y1="0" x2="15%" y2={height + 2 * this.state.timelineMargin} stroke="white" stroke-width="10"></line>
 					</svg>
 					<div ref={this.captureZoomController} className={styles.zoom_controller}>
