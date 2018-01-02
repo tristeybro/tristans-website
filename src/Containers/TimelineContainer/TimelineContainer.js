@@ -70,14 +70,15 @@ class TimelineContainer extends React.Component {
 								.data(timePoints)
 								.enter()
 								.append("g")
-								.attr("transform", (d) => `translate(100,${timeScale(d.getTime())})`);
+								.attr("transform", (d) => `translate(0,${timeScale(d.getTime())})`);
 
 		points.append("circle")
+					.attr("cx", "15%")
 					.attr("r", "4")
 					.attr("fill", "white");
 
 		points.append("text")
-					.attr("x", "-90")
+					.attr("x", "0")
 					.attr("dy", "0.35em")
 					.attr("stroke", "white")
 					.attr("fill", "white")
@@ -87,9 +88,10 @@ class TimelineContainer extends React.Component {
 								.data(this.state.lifeEvents)
 								.enter()
 								.append("g")
-								.attr("transform", (evt) => `translate(100,${timeScale(new Date(evt.date).getTime())})`);
+								.attr("transform", (evt) => `translate(0,${timeScale(new Date(evt.date).getTime())})`);
 
 		lifeEvents.append("circle")
+							.attr("cx", "15%")
 							.attr("r", "8")
 							.attr("stroke", "orange")
 							.attr("stroke-width", "4")
@@ -158,7 +160,7 @@ class TimelineContainer extends React.Component {
 			<div className={styles.timeline_container}>
 				<div onScroll={this.handleScroll} className={styles.timeline}>
 					<svg ref={this.onRef} className={styles.chart} width="100%" height={height + 2 * this.state.timelineMargin}>
-						<line x1="100" y1="0" x2="100" y2={height + 2 * this.state.timelineMargin} stroke="white" stroke-width="10"></line>
+						<line x1="15%" y1="0" x2="15%" y2={height + 2 * this.state.timelineMargin} stroke="white" stroke-width="10"></line>
 					</svg>
 					<div ref={this.captureZoomController} className={styles.zoom_controller}>
 						<img onClick={this.zoomIn} src="https://s3.amazonaws.com/thetristanity/img/orange_plus_sign.png"></img>
