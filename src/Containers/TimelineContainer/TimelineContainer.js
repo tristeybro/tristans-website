@@ -65,7 +65,7 @@ class TimelineContainer extends React.Component {
 		const svg = this.state.svg;
 
 		const tooltip = timelineDiv.append("div")	
-				    									 .attr("class", styles.tooltip)				
+				    									 .attr("class", styles.tooltip)			
 				    									 .style("opacity", 0)
 				    									 .style("display", "none")
 				    									 .style("position", "absolute");
@@ -99,32 +99,38 @@ class TimelineContainer extends React.Component {
 								.append("g")
 								.attr("transform", (evt) => `translate(0,${timeScale(new Date(evt.date).getTime())})`);
 
+		const showToolTip = (d) => {
+			const coordinates = d3.mouse(svg._groups[0][0]);
+	  	tooltip.transition()		
+	       		 .duration(100)		
+	           .style("opacity", .9)
+	           .style("display", "inline-block");	
+	    tooltip.html(`<h4>${d.date}</h4>` + `<img src="${d.img}"></img>` + "<br><br>" + d.description)
+	    	     .style("left", (coordinates[0] + 22) + "px")		
+	    	     .style("top", (coordinates[1] - 28) + "px");
+	    zoomController.style("opacity", "0");
+		}
+
+		const hideToolTip = (d) => {
+    	tooltip.transition()		
+      	     .duration(100)		
+         	   .style("opacity", 0)
+          	 .style("display", "none");
+    	zoomController.style("opacity", "1");
+		}
+
+		tooltip.on("touchstart", hideToolTip);
+
 		lifeEvents.append("circle")
 							.attr("cx", "15%")
 							.attr("r", "8")
 							.attr("stroke", "orange")
 							.attr("stroke-width", "4")
 							.attr("fill", "white")
-							.on("mouseenter", (d) => {
-								console.log(svg);
-								console.log(svg._groups[0][0])
-								const coordinates = d3.mouse(svg._groups[0][0]);
-		          	tooltip.transition()		
-		               		 .duration(100)		
-		                   .style("opacity", .9)
-		                   .style("display", "inline-block");	
-		            tooltip.html(`<h4>${d.date}</h4>` + `<img src="${d.img}"></img>` + "<br><br>" + d.description)
-		            	     .style("left", (coordinates[0] + 20) + "px")		
-                	     .style("top", (coordinates[1] - 28) + "px");
-                zoomController.style("opacity", "0");
-		          })					
-			        .on("mouseout", (d) => {		
-			        	tooltip.transition()		
-	                     .duration(100)		
-	                     .style("opacity", 0)
-	                     .style("display", "none");
-	              zoomController.style("opacity", "1");
-			        });
+							.on("mouseenter", showToolTip)					
+			        .on("mouseout", hideToolTip)
+			        .on("touchstart", showToolTip)
+			        .on("touchcancel", hideToolTip);
 
 	}
 
