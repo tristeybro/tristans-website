@@ -14,10 +14,9 @@ class TimelineContainer extends React.Component {
 			zoomController: null,
 			svg: null,
 			minIntervalHeight: 100,
-			numIntervals: 240,
-			height: 100 * 240,
+			numIntervals: 24,
 			timelineMargin: 10,
-			intervalDelta: 24,
+			zoomFactor:0.5,
 			isFetchingLifeEvents: true,
 			lifeEvents: [],
 		}
@@ -34,7 +33,9 @@ class TimelineContainer extends React.Component {
 		return timePoints;
 	}
 
-	shouldComponentUpdate() { return false }
+	shouldComponentUpdate() {
+		return false;
+	}
 
 	captureZoomController = (ref) => {
 		this.setState({zoomController: ref});
@@ -48,21 +49,38 @@ class TimelineContainer extends React.Component {
 		this.setState({svg: d3.select(ref)}, () => this.renderTimeline());
 	}
 
+	renderScale = (svg, height) => {
+		svg.select("line").remove();
+		svg.append("line")
+			 .attr("x1", "15%")
+			 .attr("x2", "15%")
+			 .attr("y1", "0")
+			 .attr("y2", `${height}`)
+			 .attr("stroke", "white")
+			 .attr("stroke-width", "2");
+	}
+
 	renderTimeline = () => {
+		const timelineMargin = this.state.timelineMargin;
+		const height = this.state.numIntervals * this.state.minIntervalHeight;
+
 		// Clear out any old points on the timeline.
 		const oldPoints = this.state.svg.selectAll("g");
 		oldPoints.remove();
 
-		const timelineMargin = this.state.timelineMargin;
 		const startDate = new Date("09/01/1990");
 		const endDate = new Date();
 		const timeScale = d3.scaleLinear()
 												.domain([startDate.getTime(), endDate.getTime()])
-											  .range([timelineMargin, this.state.height + timelineMargin]);
+											  .range([timelineMargin, height + timelineMargin]);
 
 
 		const timelineDiv = this.state.timelineDiv;
 		const svg = this.state.svg;
+
+		this.renderScale(svg, height + 2 * timelineMargin);
+
+		svg.attr("height", this.state.numIntervals * this.state.minIntervalHeight + 2 * timelineMargin);
 
 		const tooltip = timelineDiv.append("div")	
 				    									 .attr("class", styles.tooltip)			
@@ -136,23 +154,21 @@ class TimelineContainer extends React.Component {
 
 	zoomIn = () => {
 		const prevNumIntervals = this.state.numIntervals;
-		const nextNumIntervals = prevNumIntervals + this.state.intervalDelta;
+		const nextNumIntervals = prevNumIntervals / this.state.zoomFactor;
 		if (nextNumIntervals <= 1024) {
 			this.setState({
 				numIntervals: nextNumIntervals
-			});
-			this.renderTimeline();
+			}, this.renderTimeline);
 		}
 	}
 
 	zoomOut = () => {
 		const prevNumIntervals = this.state.numIntervals;
-		const nextNumIntervals = prevNumIntervals - this.state.intervalDelta;
+		const nextNumIntervals = prevNumIntervals * this.state.zoomFactor;
 		if (nextNumIntervals >= 1) {
 			this.setState({
 				numIntervals: nextNumIntervals
-			});
-			this.renderTimeline();
+			}, this.renderTimeline);
 		}
 	}
 
@@ -166,14 +182,13 @@ class TimelineContainer extends React.Component {
 				this.setState({
 					isFetchingLifeEvents: false,
 					lifeEvents: Object.values(val),
-				});
-				this.renderTimeline();
+				}, this.renderTimeline);
 			});
 		}
 	}
 
 	render() {
-		const height = this.state.height;
+		const height = this.state.numIntervals * this.state.minIntervalHeight;
 		return (
 			<div className={styles.timeline_container}>
 				<div ref={this.captureTimelineDiv} onScroll={this.handleScroll} className={styles.timeline}>
