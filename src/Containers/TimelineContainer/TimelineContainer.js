@@ -80,7 +80,7 @@ class TimelineContainer extends React.Component {
 
 		this.renderScale(svg, height + 2 * timelineMargin);
 
-		svg.attr("height", this.state.numIntervals * this.state.minIntervalHeight + 2 * timelineMargin);
+		svg.attr("height", this.calculateSvgHeight(this.state.numIntervals, this.state.minIntervalHeight, this.state.timelineMargin));
 
 		const tooltip = timelineDiv.append("div")	
 				    									 .attr("class", styles.tooltip)			
@@ -165,7 +165,7 @@ class TimelineContainer extends React.Component {
 	zoomOut = () => {
 		const prevNumIntervals = this.state.numIntervals;
 		const nextNumIntervals = prevNumIntervals * this.state.zoomFactor;
-		if (nextNumIntervals >= 1) {
+		if (this.hasZoomOut(nextNumIntervals, this.state.minIntervalHeight)) {
 			this.setState({
 				numIntervals: nextNumIntervals
 			}, this.renderTimeline);
@@ -187,8 +187,23 @@ class TimelineContainer extends React.Component {
 		}
 	}
 
+	hasZoomOut(numIntervals, minIntervalHeight) {
+		const proposedHeight = numIntervals * minIntervalHeight;
+		const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+		const minHeight = Math.min(viewportHeight, 600);
+		return proposedHeight >= minHeight;
+	}
+
+	calculateSvgHeight = (numIntervals, minIntervalHeight, timelineMargin) => {
+		const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+		const minHeight = Math.min(viewportHeight, 600);
+		const proposedHeight = this.state.numIntervals * this.state.minIntervalHeight;
+		const height = proposedHeight <= minHeight ? minHeight : proposedHeight;
+		return height + 2 * timelineMargin;
+	}
+
 	render() {
-		const height = this.state.numIntervals * this.state.minIntervalHeight;
+		const height = this.calculateSvgHeight(this.state.numIntervals, this.state.minIntervalHeight, this.state.timelineMargin);		
 		return (
 			<div className={styles.timeline_container}>
 				<div ref={this.captureTimelineDiv} onScroll={this.handleScroll} className={styles.timeline}>
