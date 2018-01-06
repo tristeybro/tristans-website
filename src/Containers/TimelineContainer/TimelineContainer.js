@@ -125,8 +125,8 @@ class TimelineContainer extends React.Component {
 	           .style("opacity", .9)
 	           .style("display", "inline-block");	
 	    tooltip.html(`<h4>${d.date}</h4>` + `<img src="${d.img}"></img>` + "<br><br>" + d.description)
-	    			 .style("left", "17.5%")
-	    			 .style("top", `${this.state.scrollTop + 8}px`);
+	    			 .style("left", "calc(15% + 16px)")
+	    			 .style("top", `${this.state.scrollTop + 16}px`);
 	    zoomController.style("opacity", "0");
 		}
 

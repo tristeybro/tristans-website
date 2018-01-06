@@ -30,7 +30,7 @@
 	position: absolute;
 	background-color: white;
 	border-radius: 10px;
-	width: calc(85% - 2*16px - 2*22px);
+	width: calc(85% - 2*16px - 2*16px);
 	padding: 16px;
 	text-align: center;
 }
