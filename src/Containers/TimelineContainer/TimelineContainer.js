@@ -11,6 +11,7 @@ class TimelineContainer extends React.Component {
 		super(props);
 		this.state = {
 			timelineDiv: null,
+			scrollTop: 0,
 			zoomController: null,
 			svg: null,
 			minIntervalHeight: 100,
@@ -118,14 +119,14 @@ class TimelineContainer extends React.Component {
 								.attr("transform", (evt) => `translate(0,${timeScale(new Date(evt.date).getTime())})`);
 
 		const showToolTip = (d) => {
-			const coordinates = d3.mouse(svg._groups[0][0]);
+			console.log(this);
 	  	tooltip.transition()		
 	       		 .duration(100)		
 	           .style("opacity", .9)
 	           .style("display", "inline-block");	
 	    tooltip.html(`<h4>${d.date}</h4>` + `<img src="${d.img}"></img>` + "<br><br>" + d.description)
-	    	     .style("left", (coordinates[0] + 22) + "px")		
-	    	     .style("top", (coordinates[1] - 28) + "px");
+	    			 .style("left", "17.5%")
+	    			 .style("top", `${this.state.scrollTop + 8}px`);
 	    zoomController.style("opacity", "0");
 		}
 
@@ -145,6 +146,7 @@ class TimelineContainer extends React.Component {
 							.attr("stroke", "orange")
 							.attr("stroke-width", "4")
 							.attr("fill", "white")
+							.attr("class", styles.timeline_point)
 							.on("mouseenter", showToolTip)					
 			        .on("mouseout", hideToolTip)
 			        .on("touchstart", showToolTip)
@@ -173,7 +175,9 @@ class TimelineContainer extends React.Component {
 	}
 
 	handleScroll = (elem) => {
-		this.state.zoomController.style.top = `${elem.target.scrollTop}px`;
+		const scrollTop = elem.target.scrollTop;
+		this.state.zoomController.style.top = `${scrollTop}px`;
+		this.state.scrollTop = scrollTop;
 	}
 
 	componentDidMount() {
