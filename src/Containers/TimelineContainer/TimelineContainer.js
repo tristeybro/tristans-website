@@ -61,6 +61,13 @@ class TimelineContainer extends React.Component {
 			 .attr("stroke-width", "2");
 	}
 
+	updateDateTexts = () => {
+		const svg = this.state.svg;
+		const updatedTextLength = 0.12 * svg.node().getBoundingClientRect().width;
+		svg.selectAll("text")
+			 .attr("textLength", `${updatedTextLength}`);
+	}
+
 	renderTimeline = () => {
 		const timelineMargin = this.state.timelineMargin;
 		const height = this.state.numIntervals * this.state.minIntervalHeight;
@@ -81,7 +88,8 @@ class TimelineContainer extends React.Component {
 
 		this.renderScale(svg, height + 2 * timelineMargin);
 
-		svg.attr("height", this.calculateSvgHeight(this.state.numIntervals, this.state.minIntervalHeight, this.state.timelineMargin));
+		const h = this.calculateSvgHeight(this.state.numIntervals, this.state.minIntervalHeight, this.state.timelineMargin);
+		svg.attr("height", h);
 
 		const tooltip = timelineDiv.append("div")	
 				    									 .attr("class", styles.tooltip)			
@@ -98,6 +106,7 @@ class TimelineContainer extends React.Component {
 											.data(timePoints)
 											.enter()
 											.append("g")
+											.attr("height", "10px")
 											.attr("transform", (d) => `translate(0,${timeScale(d.getTime())})`);
 
 		points.append("circle")
@@ -105,11 +114,15 @@ class TimelineContainer extends React.Component {
 					.attr("r", "4")
 					.attr("fill", "white");
 
+		const textLength = 0.12 * svg.node().getBoundingClientRect().width;
+
 		points.append("text")
-					.attr("x", "0")
+					.attr("x", "4")
 					.attr("dy", "0.35em")
 					.attr("stroke", "white")
 					.attr("fill", "white")
+					.attr("textLength", `${textLength}`)
+					.style("font-size", "10")
 					.text((d) => d.toLocaleDateString("en-US"));
 
 		const lifeEvents = this.state.svg.append("g").selectAll("g")
@@ -207,6 +220,12 @@ class TimelineContainer extends React.Component {
 	}
 
 	render() {
+		// Listen for orientation changes
+		window.addEventListener("resize", () => {
+		// Announce the new orientation number
+			this.updateDateTexts();
+		}, false);
+
 		const height = this.calculateSvgHeight(this.state.numIntervals, this.state.minIntervalHeight, this.state.timelineMargin);		
 		return (
 			<div className={styles.timeline_container}>
