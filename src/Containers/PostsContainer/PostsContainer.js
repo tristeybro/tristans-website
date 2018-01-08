@@ -3,6 +3,7 @@ import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
 import PostsRolodex from '../../Components/PostsRolodex/PostsRolodex';
 import { fetchPosts } from '../../Api/api.js';
 import styles from './PostsContainer.css';
+import sharedStyles from '../../Lib/SharedStyles.css';
 
 class PostsContainer extends React.Component {
 
@@ -34,7 +35,7 @@ class PostsContainer extends React.Component {
 					<NavBarContainer></NavBarContainer>
 				</div>
 				<div className={styles.rolodex_container}>
-					{ isFetchingPosts ? <div>Fetching posts...</div>
+					{ isFetchingPosts ? <div className={sharedStyles.loading}><img src="https://s3.amazonaws.com/thetristanity/img/loading.gif"></img></div>
 														: <PostsRolodex posts={this.state.posts}></PostsRolodex> }
 				</div>
 			</div>

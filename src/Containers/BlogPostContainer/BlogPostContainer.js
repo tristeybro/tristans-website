@@ -41,7 +41,7 @@ class BlogPostContainer extends React.Component {
 				<div className={styles.navbar_container}>
 					<NavBarContainer></NavBarContainer>
 				</div>
-				{isFetchingPost ? (<div>Loading...</div>) : (<BlogPost title={title} date={date} postContent={postContent}></BlogPost>)}
+				{isFetchingPost ? (<div className={styles.loading}><img src="https://s3.amazonaws.com/thetristanity/img/loading.gif"></img></div>) : (<BlogPost title={title} date={date} postContent={postContent}></BlogPost>)}
 			</div>
 		)
 	}
