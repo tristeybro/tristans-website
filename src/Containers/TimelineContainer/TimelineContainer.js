@@ -17,7 +17,7 @@ class TimelineContainer extends React.Component {
 			minIntervalHeight: 100,
 			numIntervals: 24,
 			timelineMargin: 10,
-			zoomFactor:0.5,
+			zoomFactor:0.75,
 			isFetchingLifeEvents: true,
 			lifeEvents: [],
 		}

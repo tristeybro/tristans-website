@@ -1,10 +1,33 @@
-.timeline {
-	display: block;
-	width: 600px;
-	height: 600px;
-	overflow: scroll;
-	position: relative;
-	margin: 8px;
+@media screen and (min-height: 600px) {
+	.timeline {
+		display: block;
+		width: 600px;
+		height: 600px;
+		overflow: scroll;
+		position: relative;
+		margin: 8px;
+	}
+
+	.tooltip img {
+		max-width: 100%;
+		max-height: 300px;
+	}
+}
+
+@media screen and (max-height: 599px) {
+	.timeline {
+		display: block;
+		width: 600px;
+		height: 95vh;
+		overflow: scroll;
+		position: relative;
+		margin: 8px;
+	}
+
+	.tooltip img {
+		max-width: 100%;
+		max-height: 25vh;
+	}
 }
 
 .timeline_point:hover {
@@ -33,11 +56,6 @@
 	width: calc(85% - 2*16px - 2*16px);
 	padding: 16px;
 	text-align: center;
-}
-
-.tooltip img {
-	max-width: 100%;
-	max-height: 300px;
 }
 
 .zoom_controller {
