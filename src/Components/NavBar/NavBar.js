@@ -17,6 +17,10 @@ class NavBar extends React.Component {
 		target.style.backgroundColor = "red";
 	}
 
+	handleTouchStart = (e) => {
+		return;
+	}
+
 	toggleNavLinks = () => {
 		this.setState({ isNavbarShown: !this.state.isNavbarShown });
 	}
@@ -35,7 +39,7 @@ class NavBar extends React.Component {
 					</div>
 				</div>
 
-				<NavLink exact to='/' className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>HOME</NavLink>
+				<NavLink exact to='/' onTouchStart={this.handleTouchStart} className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>HOME</NavLink>
 				<NavLink to='/bios' className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>BIO</NavLink>
 				<NavLink to='/posts' className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>POSTS</NavLink>
 				<NavLink to='/connect' className={navbarLinkClasses} activeClassName={styles.active_navbar_link}>CONNECT</NavLink>
