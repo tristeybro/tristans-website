@@ -15,7 +15,7 @@
 }
 
 .content {
-
+	
 }
 
 .content img {
@@ -23,6 +23,15 @@
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 400px;
+}
+
+@media screen and (max-width: 500px) {
+	.content img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 96vw;
+	}
 }
 
 .content small {
