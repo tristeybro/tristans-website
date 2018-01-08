@@ -98,6 +98,13 @@ class TimelineContainer extends React.Component {
 				    									 .style("position", "absolute");
 
     const zoomController = d3.select(this.state.zoomController);
+    const showZoomButtonClicked = (data, index, elems) => d3.select(elems[index]).style("opacity", "0.2");
+    const showZoomButtonUnclicked = (data, index, elems) => d3.select(elems[index]).style("opacity", "1.0");
+    zoomController.selectAll("img")
+    							.on("mousedown", showZoomButtonClicked)
+    							.on("mouseup", showZoomButtonUnclicked)
+    							.on("touchstart", showZoomButtonClicked)
+    							.on("touchend", showZoomButtonUnclicked);
 
 		const timePoints = this.getTimePoints(startDate, endDate, this.state.numIntervals);
 
