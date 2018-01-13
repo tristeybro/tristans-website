@@ -17,8 +17,27 @@
 	position: sticky;
 	z-index: 100;
 	background-color: white;
-/*	padding-top: calc((256px - 28px) / 2 + 7px);
-	padding-bottom: calc((256px - 28px) / 2 + 7px);*/
+}
+
+@media screen and (min-width: 500px) and (min-height: 500px) {
+	.arrow {
+		padding-top: calc((512px / 2 - 28px) + 10px);
+		padding-bottom: calc((512px / 2 - 28px) + 10px);
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.arrow {
+		padding-top: calc((25vw / 2 - 28px) + 15px);
+		padding-bottom: calc((25vw / 2 - 28px) + 15px);
+	}
+}
+
+@media screen and (max-height: 500px) {
+	.arrow {
+		padding-top: calc((25vh / 2 - 28px) + 15px);
+		padding-bottom: calc((25vh / 2 - 28px) + 15px);
+	}
 }
 
 .left {
@@ -33,14 +52,3 @@
 	height: 28px;
 	width: 28px;
 }
-
-.active_post {
-	position: fixed;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-}
-
-
-
-

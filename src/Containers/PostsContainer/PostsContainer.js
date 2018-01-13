@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBarContainer from '../../Containers/NavBarContainer/NavBarContainer';
+import PostCard from '../../Components/PostCard/PostCard';
 import PostsRolodex from '../../Components/PostsRolodex/PostsRolodex';
 import { fetchPosts } from '../../Api/api.js';
 import styles from './PostsContainer.css';
@@ -12,6 +13,7 @@ class PostsContainer extends React.Component {
 		this.state = {
 			isFetchingPosts: true,
 			posts: null,
+			activePost: null,
 		};
 	}
 
@@ -27,9 +29,17 @@ class PostsContainer extends React.Component {
 		}
 	}
 
+	handleHover = (post) => {
+		this.setState({activePost: post});
+	}
+
+	handleUnhover = () => {
+		this.setState({activePost: null});
+	}
+
 	render() {
 		window.addEventListener("scroll", this.handleScroll)
-
+		const activePost = this.state.activePost;
 		const isFetchingPosts = this.state.isFetchingPosts;
 		return (
 			<div className={styles.posts_body}>
@@ -38,8 +48,9 @@ class PostsContainer extends React.Component {
 				</div>
 				<div className={styles.rolodex_container}>
 					{ isFetchingPosts ? <div className={sharedStyles.loading}><img src="https://s3.amazonaws.com/thetristanity/img/loading.gif"></img></div>
-														: <PostsRolodex posts={this.state.posts}></PostsRolodex> }
+														: <PostsRolodex handleHover={this.handleHover} handleUnhover={this.handleUnhover} posts={this.state.posts}></PostsRolodex> }
 				</div>
+				{activePost ? <div className={styles.active_post}><PostCard isActive={true} post={activePost}></PostCard></div> : null}
 			</div>
 		)
 	}

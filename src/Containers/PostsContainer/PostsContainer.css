@@ -13,5 +13,14 @@
 }
 
 .rolodex_container {
-	margin-top: 128px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.active_post {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
