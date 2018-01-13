@@ -64,14 +64,14 @@ a {
 
 .title {
 	text-align: center;
-	font-size: 10px;
+	font-size: 2em;
 	white-space: initial;
 	color: black;
 }
 
 .date {
 	text-align: center;
-	font-size: 6px;
+	font-size: 1em;
 	color: grey;
 }
 
