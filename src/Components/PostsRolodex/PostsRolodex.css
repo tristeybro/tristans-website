@@ -1,6 +1,4 @@
 .container {
-	height: 75vh;
-	border: 1px solid red;
 	display: flex;
 	align-items: center;
 }
@@ -19,8 +17,8 @@
 	position: sticky;
 	z-index: 100;
 	background-color: white;
-	padding-top: calc((256px - 28px) / 2 + 7px);
-	padding-bottom: calc((256px - 28px) / 2 + 7px);
+/*	padding-top: calc((256px - 28px) / 2 + 7px);
+	padding-bottom: calc((256px - 28px) / 2 + 7px);*/
 }
 
 .left {
