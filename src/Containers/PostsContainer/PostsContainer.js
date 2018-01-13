@@ -11,7 +11,7 @@ class PostsContainer extends React.Component {
 		super(props);
 		this.state = {
 			isFetchingPosts: true,
-			posts: null
+			posts: null,
 		};
 	}
 
@@ -28,10 +28,12 @@ class PostsContainer extends React.Component {
 	}
 
 	render() {
+		window.addEventListener("scroll", this.handleScroll)
+
 		const isFetchingPosts = this.state.isFetchingPosts;
 		return (
 			<div className={styles.posts_body}>
-				<div className={styles.navbar_container}>
+				<div ref={this.captureNavbar} className={styles.navbar_container}>
 					<NavBarContainer></NavBarContainer>
 				</div>
 				<div className={styles.rolodex_container}>

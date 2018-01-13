@@ -5,18 +5,24 @@ import { urlifyTitle } from '../../Lib/Utils.js';
 
 class PostCard extends React.Component {
 
+	updatePostCardLeftPosition = (e) => {
+		if (e != null) {
+			this.postcard = e;
+			this.postcard.style.left = 0;
+		}
+	}
+
 	render() {
 		
 		const horizontalIndex = this.props.horizontalIndex;
-		const left = horizontalIndex * 50 + '%';
+		const left = 0; //horizontalIndex * 50 + '%';
 		const post = this.props.post;
 		const urlTitle = urlifyTitle(post.title, post.id);
 		const urlPath = `/posts/${post.id}/${urlTitle}`;
 
 		return (
 			<Link to={urlPath}>
-				<div ref={(e) => { if (e != null) {this.postcard = e; this.postcard.style.left=left;}}}
-						 className={styles.postcard}>
+				<div className={styles.postcard}>
 						<div className={styles.text_section}>
 							<div className={styles.title}>{post.title}</div>
 							<div className={styles.date}>{ new Date(post.date).toLocaleDateString("en-US") }</div>
