@@ -8,6 +8,7 @@ import BlogPostContainer from './Containers/BlogPostContainer/BlogPostContainer'
 
 class App extends Component {
   render() {
+    document.getElementsByTagName("META")[1].content = "width=device-width; initial-scale=1; maximum-scale=1;";
     return (
       <BrowserRouter>
         <Switch>
