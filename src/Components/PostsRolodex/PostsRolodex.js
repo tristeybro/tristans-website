@@ -8,7 +8,7 @@ class PostsRolodex extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			horizontalIndex: 0,
+			activePost: null,
 		}
 	}
 
@@ -31,9 +31,17 @@ class PostsRolodex extends React.Component {
 		fetchPosts().then(val => console.log(val));
 	}
 
+	handleHover = (post, event) => {
+		this.setState({activePost: post});
+	}
+
+	handleUnhover = () => {
+		this.setState({activePost: null});
+	}
+
 	render() {
 
-		const horizontalIndex = this.state.horizontalIndex;
+		const activePost = this.state.activePost;
 		const isModalShown = this.state.isModalShown
 		const numProps = this.props.posts.length
 
@@ -48,9 +56,8 @@ class PostsRolodex extends React.Component {
 					<div className={styles.rolodex_inner}>
 						{
 							this.props.posts.map((post, index) => {
-								return index == numProps - 1 ? (<PostCard key={index} ref={(e) => {if (e != null) {this.lastCard = e}}} horizontalIndex={horizontalIndex} post={post}></PostCard>)
-								: (<PostCard key={index} horizontalIndex={horizontalIndex} post={post}></PostCard>)
-							})
+								return (<PostCard key={index} post={post} isActive={false} handleHover={this.handleHover.bind(this, post)} handleUnhover={this.handleUnhover}></PostCard>);
+							})	
 						}
 					</div>
 				</div>
@@ -58,6 +65,8 @@ class PostsRolodex extends React.Component {
 				<div className={`${styles.arrow} ${styles.right}`}>
 					<img src="https://s3.amazonaws.com/thetristanity/img/right_arrow.png"></img>
 				</div>
+
+				{activePost ? <div className={styles.active_post}><PostCard isActive={true} post={activePost}></PostCard></div> : null}
 			
 			</div>
 		)

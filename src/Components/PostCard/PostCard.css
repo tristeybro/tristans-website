@@ -5,8 +5,8 @@ a {
 .postcard {
 	position: relative;
 	border: 1px solid black;
-	height:256px;
-	width: 256px;
+	height:100%;
+	width: 100%;
 	transform-origin: left;
 	transform: rotateY(30deg);
 	transition: left 250ms linear;
@@ -22,39 +22,47 @@ a {
 		height: 256px;
 		width: 256px;
 	}
+
+	.active {
+		height: 512px;
+		width: 512px;
+	}
 }
 
-@media screen and (max-width: 500px), screen and (max-height: 500px) {
+@media screen and (max-width: 500px) {
+	.postcard {
+		height: 25vw;
+		width: 25vw;
+	}
+
+	.active {
+		height: 66vw;
+		width: 66vw;
+	}
+}
+
+@media screen and (max-height: 500px) {
 	.postcard {
 		height: 25vh;
 		width: 25vh;
 	}
+
+	.active {
+		height: 66vh;
+		width: 66vh;
+	}
 }
 
 .postcard:hover {
-	max-width: 100%;
-	transform: scale(2.5);
-	z-index: 2000;
-	background-color: white;
-	opacity: 1;
+	opacity: 0.4;
 }
 
-.postcard:hover .title, .date {
-	display: block;
-	margin: 4px;
-} 
-
-.postcard:hover .text_section {
-	display: block;
-	width: 100%;
-} 
-
-.postcard:hover .date {
-	display: block;
+.text_section {
+	text-align: center;
+	flex: 0 1 content;
 }
 
 .title {
-	display: none;
 	text-align: center;
 	font-size: 10px;
 	white-space: initial;
@@ -62,7 +70,6 @@ a {
 }
 
 .date {
-	display: none;
 	text-align: center;
 	font-size: 6px;
 	color: grey;
@@ -71,28 +78,10 @@ a {
 .img {
 	min-width: 0px;
 	min-height: 0px;
-
 	max-height: 100%;
 	max-width: 100%;
-
 	height: auto;
 	width: auto;
-
 	flex: 1 1 auto;
-
 	margin: 4px;
 }
-
-.text_section {
-	text-align: center;
-	flex: 0 1 content;
-}
-
-
-
-
-
-
-
-
-
