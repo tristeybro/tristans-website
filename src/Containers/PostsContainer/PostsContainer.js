@@ -47,9 +47,10 @@ class PostsContainer extends React.Component {
 					<NavBarContainer></NavBarContainer>
 				</div>
 				<div className={styles.rolodex_container}>
-					{ isFetchingPosts ? <div className={sharedStyles.loading}><img src="https://s3.amazonaws.com/thetristanity/img/loading.gif"></img></div>
+					{isFetchingPosts ? null
 														: <PostsRolodex handleHover={this.handleHover} handleUnhover={this.handleUnhover} posts={this.state.posts}></PostsRolodex> }
 				</div>
+				{isFetchingPosts ? <div className={sharedStyles.loading}><img src="https://s3.amazonaws.com/thetristanity/img/loading.gif"></img></div> : null}
 				{activePost ? <div className={styles.active_post}><PostCard isActive={true} post={activePost}></PostCard></div> : null}
 			</div>
 		)
