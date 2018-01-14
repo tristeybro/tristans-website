@@ -81,7 +81,7 @@ a {
 	}
 }
 
-.postcard:hover {
+.inactive:hover {
 	opacity: 0.4;
 }
 

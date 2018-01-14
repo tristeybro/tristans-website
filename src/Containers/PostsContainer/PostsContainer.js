@@ -14,6 +14,7 @@ class PostsContainer extends React.Component {
 			isFetchingPosts: true,
 			posts: null,
 			activePost: null,
+			isActivePostHovered: false,
 		};
 	}
 
@@ -34,7 +35,20 @@ class PostsContainer extends React.Component {
 	}
 
 	handleUnhover = () => {
-		this.setState({activePost: null});
+		setTimeout(() => {
+			const isActivePostHovered = this.state.isActivePostHovered;
+			if (!isActivePostHovered) {
+				this.setState({activePost: null})
+			}
+		}, 200);
+	}
+
+	handleActivePostHover = () => {
+		this.setState({isActivePostHovered: true});
+	}
+
+	handleActivePostUnhover = () => {
+		this.setState({isActivePostHovered: false, activePost: null});
 	}
 
 	render() {
@@ -51,7 +65,7 @@ class PostsContainer extends React.Component {
 														: <PostsRolodex handleHover={this.handleHover} handleUnhover={this.handleUnhover} posts={this.state.posts}></PostsRolodex> }
 				</div>
 				{isFetchingPosts ? <div className={sharedStyles.loading}><img src="https://s3.amazonaws.com/thetristanity/img/loading.gif"></img></div> : null}
-				{activePost ? <div className={styles.active_post}><PostCard isActive={true} post={activePost}></PostCard></div> : null}
+				{activePost ? <div className={styles.active_post}><PostCard handleUnhover={this.handleActivePostUnhover} handleHover={this.handleActivePostHover.bind(this, activePost)} isActive={true} post={activePost}></PostCard></div> : null}
 			</div>
 		)
 	}

@@ -11,11 +11,13 @@ class PostCard extends React.Component {
 		const isActive = this.props.isActive;
 		const urlTitle = urlifyTitle(post.title, post.id);
 		const urlPath = `/posts/${post.id}/${urlTitle}`;
-		const postcardClassName = isActive ? `${styles.postcard} ${styles.active}` : `${styles.postcard}`;
+		const postcardClassName = isActive ? `${styles.postcard} ${styles.active}` : `${styles.postcard} ${styles.inactive}`;
 
 		return (
 			<Link to={urlPath}>
-				<div onMouseOver={this.props.handleHover} onMouseLeave={this.props.handleUnhover} className={postcardClassName}>
+				<div onMouseOver={this.props.handleHover}
+						 onMouseLeave={this.props.handleUnhover}
+						 className={postcardClassName}>
 						{isActive ?
 							<div className={styles.text_section}>
 								<div className={styles.title}>{post.title}</div>
