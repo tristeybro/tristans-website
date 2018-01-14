@@ -20,7 +20,7 @@ const CryptoModal = (props) => {
 			<div>{info.name}</div>
 			<img src={info.qrImg}></img>
 			<div className={styles.address_bar}>
-				<input id="address" type="text" placeholder={info.address} disabled></input>
+				<input id="address" type="text" value={info.address} readonly></input>
 				<img className={styles.clipboard}
 						 onClick={copyToClipboard}
 						 height="14"
