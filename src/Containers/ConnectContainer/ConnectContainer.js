@@ -5,6 +5,7 @@ import Notification from '../../Components/Notification/Notification';
 import CryptoModal from '../../Components/CryptoModal/CryptoModal';
 import sharedStyles from '../../Lib/SharedStyles.css';
 import styles from './ConnectContainer.css';
+import axios from 'axios';
 
 const contactMeText = `
 	Feel free to reach out and message me through one of the channels below.
@@ -53,7 +54,8 @@ class ConnectContainer extends React.Component {
 		super(props);
 		this.state = {
 			activeCryptoLink: null,
-			isClipboardCopyNotificationShown: false,
+			isNotificationShown: false,
+			notificationText: null
 		};
 	}
 
@@ -66,15 +68,58 @@ class ConnectContainer extends React.Component {
 	}
 
 	showClipboardCopyNotification = () => {
-		this.setState({isClipboardCopyNotificationShown: true});
-		setTimeout(() => this.setState({isClipboardCopyNotificationShown: false}), 1000);
+		this.setState({
+ 			isNotificationShown: true,
+ 			notificationText: "Address copied to clipboard."
+ 		});
+		setTimeout(() => this.setState({
+			isNotificationShown: false,
+			notificationText: null,
+		}), 1000);
+	}
+
+	onFormSubmitHandler = (e) => {
+		e.preventDefault();
+		const target = e.target;
+		const sender = target[0].value;
+		const subject = target[1].value
+		const message = target[2].value;
+		const url = "http://api.tristanbenavides.com";
+		axios.get(url, {
+			params: {
+				sender: sender,
+				subject: subject,
+				message: message
+			}
+		})
+  	.then((response) => {
+	 		this.setState({
+	 			isNotificationShown: true,
+	 			notificationText: "Message successfully submitted!"
+	 		});
+			setTimeout(() => this.setState({
+				isNotificationShown: false,
+				notificationText: null,
+			}), 1000);
+	 	})
+		.catch((error) => {
+		 	this.setState({
+		 		isNotificationShown: true,
+		 		notificationText: "Error occurred while sending message.",
+		 	});
+			setTimeout(() => this.setState({
+				isNotificationShown: false,
+				notificationText: null,
+			}), 1000);
+		});
 	}
 
 	componentDidMount = () => { document.title = "Connect" }
 
 	render() {
 		const activeCryptoLink = this.state.activeCryptoLink;
-		const isClipboardCopyNotificationShown = this.state.isClipboardCopyNotificationShown;
+		const isNotificationShown = this.state.isNotificationShown;
+		const notificationText = this.state.notificationText;
 		return (
 			<div>
 				<div className={sharedStyles.navbar_container}>
@@ -84,13 +129,14 @@ class ConnectContainer extends React.Component {
 								 iconLinks={iconLinks}
 								 cryptoLinks={cryptoLinks}
 								 contactMeText={contactMeText}
-								 onClick={this.onClickHandler}>
+								 onClick={this.onClickHandler}
+								 onFormSubmit={this.onFormSubmitHandler}>
 				</Connect>
 				{ activeCryptoLink ? <CryptoModal exitHandler={this.exitHandler}
 																					info={activeCryptoLink}
 																					showClipboardCopyNotification={this.showClipboardCopyNotification}></CryptoModal>
 													 : null }
-				{ isClipboardCopyNotificationShown ? <div className={styles.notification}><Notification message={"Address Copied To Clipboard"}></Notification></div> : null }
+				{ isNotificationShown ? <div className={styles.notification}><Notification message={notificationText}></Notification></div> : null }
 			</div>
 		)
 	}

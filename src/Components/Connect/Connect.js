@@ -33,7 +33,7 @@ const Connect = (props) => {
 
 			<b1 className={styles.heading}>Contact Me</b1>
 			<div className={styles.contact_me_form}>
-				<ContactMeForm></ContactMeForm>
+				<ContactMeForm onFormSubmit={props.onFormSubmit}></ContactMeForm>
 			</div>
 
 			<b1 className={styles.heading}>Donate</b1>

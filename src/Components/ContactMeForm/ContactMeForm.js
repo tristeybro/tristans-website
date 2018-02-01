@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './ContactMeForm.css';
 
 class ContactMeForm extends React.Component {
+
 	render() {
 		return (
-			<form className={styles.contact_me_form}>
-				<label for="email">Email</label><br />
-				<input id="email" name="email" type="text" placeholder="Enter your email"></input><br />
+			<form onSubmit={this.props.onFormSubmit} className={styles.contact_me_form}>
+				<label for="sender">Email</label><br />
+				<input id="sender" name="sender" type="text" placeholder="Enter your email"></input><br />
 				<label for="subject">Subject</label>
 				<div><input id="subject" name="subject" type="text" placeholder="Enter the subject"></input></div>
 				<label for="message">Message</label><br />
