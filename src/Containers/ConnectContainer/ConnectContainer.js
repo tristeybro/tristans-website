@@ -93,6 +93,9 @@ class ConnectContainer extends React.Component {
 			}
 		})
   	.then((response) => {
+  		target[0].value = "";
+  		target[1].value = "";
+  		target[2].value = "";
 	 		this.setState({
 	 			isNotificationShown: true,
 	 			notificationText: "Message successfully submitted!"
